@@ -10,11 +10,11 @@ describe("Testing User Instances and saving it to Database", function() {
     expect(user).toBeDefined();
   });
 
-  it("Checking if isAdmin is false", function() {
+  it("isAdmin should be set to false", function() {
     expect(user.isAdmin).toBeFalsy();
   });
 
-  it("Saving instances to Database", function() {
+  it("DB should have the length of two given only two user has registered", function() {
     expect(userDB).toHaveLength(2);
   });
 
