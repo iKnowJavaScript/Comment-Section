@@ -3,53 +3,54 @@ let CommentDB = [];
 let commentIdCounter = 0;
 
 function Comment(author, commentMessage) {
-  // if(!(author instanceof User)) {
-  //   throw Error("Only User instances can post Comment")
-  // }
+  if (author.constructor.name !== "User") {
+    throw Error("Only User instances can post Comment");
+  }
 
   this.authorName = author.name;
   this.authorEmail = author.email;
   this.commentMessage = commentMessage;
   this.timeCreated = new Date().toLocaleTimeString();
   this.dateCreated = new Date().toLocaleDateString();
+  this.isAdmin = author.isAdmin;
   this.commentId = ++commentIdCounter;
   this.authorId = author.id;
 
   return this;
 }
 
-function displayComment(context) {
-  return `${context.commentMessage}
-          By ${context.authorName} at ${context.timeCreated} - ${
-    context.dateCreated
-  } `;
+function displayComment(userObj, isEdited = "Originally") {
+  return `  ${userObj.commentMessage}
+          ${isEdited} By ${editedBy(userObj)} at ${userObj.timeCreated} - ${
+    userObj.dateCreated
+  } \n\n`;
+}
+
+function editedBy(who) {
+  if (who.isAdmin === false) return who.authorName;
+  if (who.isAdmin === true) return Admin;
 }
 
 Comment.prototype.createComment = function() {
-  let comment = {
-    authorName: this.authorName,
-    authorEmail: this.authorEmail,
-    commentMessage: this.commentMessage,
-    timeCreated: this.timeCreated,
-    dateCreated: this.dateCreated,
-    commentId: this.commentId,
-    authorId: this.authorId
-  };
-
-  CommentDB.push(comment);
+  CommentDB.push(this);
   return displayComment(this);
 };
 
-Comment.prototype.editComment = function(commentId, newMessage) {
+Comment.prototype.editComment = function(commentId, newMessage, author) {
   let commentIndex = 0;
+
   CommentDB.forEach(function(comment, index) {
     if (comment.commentId === commentId) {
-      comment.commentMessage = newMessage;
-      commentIndex = index;
+      if (comment.authorId !== author.id && author.isAdmin === false) {
+        throw Error("Error: You cannot Edit another User's Comment.");
+      } else {
+        comment.commentMessage = newMessage;
+        commentIndex = index;
+      }
     }
   });
-
-  return CommentDB[commentIndex];
+  let comment = CommentDB[commentIndex];
+  return displayComment(comment, "Edited");
 };
 
 Comment.prototype.viewAll = function() {
@@ -58,51 +59,28 @@ Comment.prototype.viewAll = function() {
   });
 };
 
-Comment.prototype.deleteSingleComment = function(commentId) {
+Comment.prototype.deleteSingleComment = function(commentId, author) {
   let commentIndex = 0;
   CommentDB.forEach(function(comment, index) {
     if (comment.commentId === commentId) {
-      commentIndex = index;
+      if (comment.authorId !== author.id && author.isAdmin === false) {
+        throw Error("Error: You cannot Delete another User's Comment.");
+      } else {
+        comment.commentMessage =
+          "This Comment has been deleted for some reasons";
+        commentIndex = index;
+      }
     }
   });
-  console.log(commentIndex)
+  let comment = CommentDB[commentIndex];
 
-  CommentDB = CommentDB.splice(commentIndex, 0) //work on this
+  return displayComment(comment, "Deleted");
+};
 
-  return CommentDB;
-}
-
-Comment.prototype.deleteAllComment = function(commentId) {
-  CommentDB = []
+Comment.prototype.deleteAllComment = function() {
+  CommentDB = [];
 
   return "All comment deleted.";
-}
+};
 
-
-
-
-
-
-
-const comment = new Comment(
-  { name: "Martins", email: "email", id: 1 },
-  "Doing fine."
-);
-console.log(comment.createComment());
-
-const comment1 = new Comment(
-  { name: "Martins", email: "email", id: 2 },
-  "Doing fine 2222"
-);
-console.log(comment1.createComment());
-
-console.log("edit ",comment.editComment(1, "new message for comment"));
-
-console.log("DB", CommentDB);
-comment.viewAll()
-
-//console.log(comment.deleteSingleComment(2))
-
-console.log(comment.deleteAllComment())
-
-console.log("DB", CommentDB);
+module.exports = { Comment };
