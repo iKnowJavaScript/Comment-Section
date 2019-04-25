@@ -1,4 +1,4 @@
-const { Comment, userDB } = require("./Comment");
+const { Comment } = require("./Comment");
 
 let userDB = [];
 

@@ -3,9 +3,9 @@ let CommentDB = [];
 let commentIdCounter = 0;
 
 function Comment(author, commentMessage) {
-  if (author.constructor.name !== "User") {
-    throw Error("Only User instances can post Comment");
-  }
+  // if (author.constructor.name !== "User") {
+  //   throw Error("Only User instances can post Comment");
+  // }
 
   this.authorName = author.name;
   this.authorEmail = author.email;
@@ -83,4 +83,4 @@ Comment.prototype.deleteAllComment = function() {
   return "All comment deleted.";
 };
 
-module.exports = { Comment };
+module.exports = { Comment, CommentDB };
