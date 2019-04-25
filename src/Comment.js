@@ -18,6 +18,13 @@ function Comment(author, commentMessage) {
   return this;
 }
 
+function displayComment(context) {
+  return `${context.commentMessage}
+          By ${context.authorName} at ${context.timeCreated} - ${
+    context.dateCreated
+  } `;
+}
+
 Comment.prototype.createComment = function() {
   let comment = {
     authorName: this.authorName,
@@ -30,21 +37,50 @@ Comment.prototype.createComment = function() {
   };
 
   CommentDB.push(comment);
-  return `${this.commentMessage}
-          By ${this.authorName} at ${this.timeCreated} - ${this.dateCreated} `;
+  return displayComment(this);
 };
 
 Comment.prototype.editComment = function(commentId, newMessage) {
   let commentIndex = 0;
   CommentDB.forEach(function(comment, index) {
-    if(comment.commentId === commentId) {
+    if (comment.commentId === commentId) {
       comment.commentMessage = newMessage;
-      comment = index
+      commentIndex = index;
     }
   });
 
   return CommentDB[commentIndex];
 };
+
+Comment.prototype.viewAll = function() {
+  CommentDB.map(function(comment) {
+    console.log(displayComment(comment));
+  });
+};
+
+Comment.prototype.deleteSingleComment = function(commentId) {
+  let commentIndex = 0;
+  CommentDB.forEach(function(comment, index) {
+    if (comment.commentId === commentId) {
+      commentIndex = index;
+    }
+  });
+  console.log(commentIndex)
+
+  CommentDB = CommentDB.splice(commentIndex, 0) //work on this
+
+  return CommentDB;
+}
+
+Comment.prototype.deleteAllComment = function(commentId) {
+  CommentDB = []
+
+  return "All comment deleted.";
+}
+
+
+
+
 
 
 
@@ -60,6 +96,13 @@ const comment1 = new Comment(
 );
 console.log(comment1.createComment());
 
-console.log(comment.editComment(1, "new message for comment"));
+console.log("edit ",comment.editComment(1, "new message for comment"));
+
+console.log("DB", CommentDB);
+comment.viewAll()
+
+//console.log(comment.deleteSingleComment(2))
+
+console.log(comment.deleteAllComment())
 
 console.log("DB", CommentDB);
