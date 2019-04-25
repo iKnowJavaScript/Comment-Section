@@ -1,0 +1,23 @@
+{
+  "name": "comment-section",
+  "version": "1.0.0",
+  "description": "Website comment sectionn with Prototypal Oriented Programming",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iKnowJavaScript/Comment-Section.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iKnowJavaScript/Comment-Section/issues"
+  },
+  "homepage": "https://github.com/iKnowJavaScript/Comment-Section#readme",
+  "devDependencies": {
+    "jest": "^24.7.1"
+  }
+}
