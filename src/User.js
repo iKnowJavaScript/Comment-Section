@@ -1,4 +1,6 @@
-let userDB = []
+const { Comment } = require("./Comment");
+
+let userDB = [];
 
 let idCounter = 0;
 
@@ -9,15 +11,32 @@ function User(name, email) {
   this.id = ++idCounter;
 }
 
-User.prototype.getId = function() {
-  return this.id;
-}
+User.prototype.saveToDB = function() {
+  let user = {
+    name: this.name,
+    email: this.email,
+    isAdmin: this.isAdmin,
+    userId: this.id
+  }
 
+  userDB.push(user);
+  return "Saved to Database";
+}
 
 User.prototype.postComment = function(comment) {
-  return new Comment(this, comment).createComment()
+  return new Comment(this, comment).createComment();
+};
+
+User.prototype.userEditComment = function(commentId, newMessage) {
+  return Comment.prototype.editComment(commentId, newMessage, this);
+};
+
+User.prototype.viewAllComment = function() {
+  return Comment.prototype.viewAll();
+};
+
+User.prototype.deleteSIngleComment = function(commentId) {
+  return Comment.prototype.deleteSingleComment(commentId, this);
 }
 
-User.prototype.canEditComment = function(commentId, newMessage) {
-  return new Comment.editComment(commentId, newMessage)
-}
+module.exports = { User, userDB };
