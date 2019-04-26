@@ -38,7 +38,6 @@ let comment2 = user1.postComment(
 
 describe("When registered Post a comment in the comment section", function() {
   it("Should return Comment Object", function() {
-    console.log(comment1);
     expect(comment1).toEqual(expect.objectContaining({}));
   });
 
@@ -47,9 +46,20 @@ describe("When registered Post a comment in the comment section", function() {
   });
 });
 
-describe("Testing when a User Edit a Comment Object", function(){
-  it("Should return String Matching this", function() {
+describe("Testing when a User Edit a Comment Object", function() {
+  it("Should return Throw Error if a User try to Edit another user comment", function() {
     
-    expect(user1.userEditComment(2, "Thanks")).toMatch(/Edited By Victor/)
+    expect(() => {user.userEditComment(2)}).toThrowError(/You cannot Edit another User's Comment./)
   })
-})
+  it("Should return String Matching this", function() {
+    expect(user1.userEditComment(2, "Thanks")).toMatch(/Edited By Victor/);
+  });
+});
+
+
+describe("Delete a single comment", function() {
+  it("Should return Throw Error if a User try to delete another user comment", function() {
+
+    expect(() => {user.deleteSIngleComment(2)}).toThrowError(/You cannot Delete another User's Comment./)
+  })
+});

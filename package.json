@@ -19,5 +19,8 @@
   "homepage": "https://github.com/iKnowJavaScript/Comment-Section#readme",
   "devDependencies": {
     "jest": "^24.7.1"
+  },
+  "dependencies": {
+    "@types/jest": "^24.0.11"
   }
 }

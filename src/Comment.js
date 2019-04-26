@@ -64,7 +64,7 @@ Comment.prototype.deleteSingleComment = function(commentId, author) {
   CommentDB.forEach(function(comment, index) {
     if (comment.commentId === commentId) {
       if (comment.authorId !== author.id && author.isAdmin === false) {
-        throw Error("Error: You cannot Delete another User's Comment.");
+        throw new Error("Error: You cannot Delete another User's Comment.");
       } else {
         comment.commentMessage =
           "This Comment has been deleted for some reasons";
