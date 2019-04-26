@@ -30,16 +30,7 @@ console.log(moderator.getAllUsers());
 // console.log(moderator.deleteSingleUser(1));
 // console.log(admin.deleteAllComment());
 // console.log(admin.deleteAllUsers())
+
 // An admin can also make an existing user a Moderator
 let moderator1 = admin.makeUserModderator(user);
 //console.log(moderator1);
-
-var commands = [
-  [ "unicorn", "🦄" ],
-  "👤  " , 
-  [ "pizza", "🍕" ],
-  [ "beer", "😀"],
-  [ "poo", "💩"]
-];
-console.log(commands)
-console.log(commands[0][1])
