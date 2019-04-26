@@ -1,6 +1,6 @@
 const { Comment } = require("./Comment");
 const { Moderator } = require("./Moderator");
-let { User, userDB } = require("./User");
+let { userDB } = require("./User");
 
 function Admin(name, email) {
   Moderator.call(this, name, email);
@@ -10,6 +10,9 @@ function Admin(name, email) {
 Admin.prototype = Object.create(Moderator.prototype);
 Admin.prototype.constructor = Admin;
 
+Admin.prototype.createModerator = function(name, email) {
+  return new Moderator(name, email);
+}
 
 Admin.prototype.deleteAllComment = function() {
   return Comment.prototype.deleteAllComment();

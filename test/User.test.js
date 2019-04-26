@@ -19,11 +19,13 @@ describe("Testing User Methods", function() {
       name: "Martins",
       email: "martinsEmail",
       isAdmin: false,
+      isModerator: false,
       id: 1
     });
   });
   it("New User's isAdmin should be set to false", function() {
     expect(user.isAdmin).toBeFalsy();
+    expect(user.isModerator).toBeFalsy();
   });
   it("DB should have the length of two given only two user has registered", function() {
     expect(userDB).toHaveLength(2);

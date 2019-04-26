@@ -79,10 +79,11 @@ Comment.prototype.deleteSingleComment = function(commentId, author) {
   return displayComment(comment, "Deleted");
 };
 
-Comment.prototype.deleteAnyComment = function(commentId, author) {
+Comment.prototype.deleteAnyComment = function(commentId, mod) {
   let commentIndex = 0;
   CommentDB.forEach(function(comment, index) {
     if (comment.commentId === commentId) {
+      comment.authorName = mod.name;
       comment.commentMessage = "This Comment has been deleted for some reasons";
       commentIndex = index;
     }

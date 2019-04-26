@@ -18,7 +18,7 @@ User.prototype.saveToDB = function() {
     email: this.email,
     isAdmin: this.isAdmin,
     userId: this.id,
-    isModerator: false;
+    isModerator: this.isModerator
   }
 
   userDB.push(user);
