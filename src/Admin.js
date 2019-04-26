@@ -19,7 +19,8 @@ Admin.prototype.getAllUsers = function() {
 
 Admin.prototype.deleteSingleUser = function(userId) {
   let afterRemoval = userDB.filter(user => user.userId !== userId);
-  return (userDB = afterRemoval);
+  (userDB = afterRemoval);
+  return "User deleted Successfully"
 };
 
 Admin.prototype.deleteAllUsers = function() {

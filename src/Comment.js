@@ -80,7 +80,7 @@ Comment.prototype.deleteSingleComment = function(commentId, author) {
 Comment.prototype.deleteAllComment = function() {
   CommentDB = [];
 
-  return "All comment deleted.";
+  return "All Comment deleted.";
 };
 
 module.exports = { Comment, CommentDB };
