@@ -17,16 +17,10 @@ Admin.prototype.getAllUsers = function() {
   return userDB.filter(user => user.isAdmin === false);
 };
 
-Admin.prototype.deleteSingleUser = function(userId) {
-  let afterRemoval = userDB.filter(user => user.userId !== userId);
-  (userDB = afterRemoval);
-  return "User deleted Successfully"
-};
-
 Admin.prototype.deleteAllUsers = function() {
   let adminsOnly = userDB.filter(user => user.isAdmin === true);
-
-  return (userDB = adminsOnly);
+  userDB = adminsOnly
+  return "All users has been deleted";
 };
 
 module.exports = { Admin };

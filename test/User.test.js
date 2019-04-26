@@ -32,7 +32,7 @@ describe("Testing User Methods", function() {
     expect(user instanceof User).toBeTruthy();
   });
 
-  it("Should return Comment Object", function() {
+  it("Comment instances should contain valid comment object", function() {
     expect(comment1).toEqual(expect.objectContaining({}));
   });
 

@@ -15,6 +15,7 @@ function Comment(author, commentMessage) {
   this.isAdmin = author.isAdmin;
   this.commentId = ++commentIdCounter;
   this.authorId = author.id;
+  this.isModerator = author.isModerator;
 
   return this;
 }
@@ -28,6 +29,7 @@ function displayComment(userObj, isEdited = "Originally") {
 
 function editedBy(who) {
   if (who.isAdmin === false) return who.authorName;
+  if (who.isModerator === true) return Moderator;
   if (who.isAdmin === true) return Admin;
 }
 
@@ -70,6 +72,19 @@ Comment.prototype.deleteSingleComment = function(commentId, author) {
           "This Comment has been deleted for some reasons";
         commentIndex = index;
       }
+    }
+  });
+  let comment = CommentDB[commentIndex];
+
+  return displayComment(comment, "Deleted");
+};
+
+Comment.prototype.deleteAnyComment = function(commentId, author) {
+  let commentIndex = 0;
+  CommentDB.forEach(function(comment, index) {
+    if (comment.commentId === commentId) {
+      comment.commentMessage = "This Comment has been deleted for some reasons";
+      commentIndex = index;
     }
   });
   let comment = CommentDB[commentIndex];

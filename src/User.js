@@ -9,6 +9,7 @@ function User(name, email) {
   this.email = email;
   this.isAdmin = false;
   this.id = ++idCounter;
+  this.isModerator = false;
 }
 
 User.prototype.saveToDB = function() {
@@ -16,7 +17,8 @@ User.prototype.saveToDB = function() {
     name: this.name,
     email: this.email,
     isAdmin: this.isAdmin,
-    userId: this.id
+    userId: this.id,
+    isModerator: false;
   }
 
   userDB.push(user);
