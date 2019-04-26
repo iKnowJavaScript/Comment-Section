@@ -10,8 +10,18 @@ function Moderator(name, email) {
 Moderator.prototype = Object.create(User.prototype);
 Moderator.prototype.constructor = Moderator;
 
+Moderator.prototype.deleteAnyComment = function(commentId) {
+  return Comment.prototype.deleteAnyComment(commentId, this);
+};
+
+Moderator.prototype.getAllUsers = function() {
+  return userDB.filter(user => user.isAdmin === false);
+};
+
 Moderator.prototype.deleteSingleUser = function(userId) {
   let afterRemoval = userDB.filter(user => user.userId !== userId);
   userDB = afterRemoval;
   return "User deleted Successfully";
 };
+
+module.exports = { Moderator };
