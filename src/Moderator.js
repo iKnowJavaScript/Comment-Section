@@ -1,10 +1,11 @@
 const { Comment } = require("./Comment");
-const { Admin } = require("./Admin");
 let { User, userDB } = require("./User");
 
 function Moderator(name, email) {
   User.call(this, name, email);
   this.isModerator = true;
+  this.emoji = "🦄 ";
+  
 }
 
 Moderator.prototype = Object.create(User.prototype);

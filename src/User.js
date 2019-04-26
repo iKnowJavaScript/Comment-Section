@@ -5,7 +5,8 @@ let userDB = [];
 let idCounter = 0;
 
 function User(name, email) {
-  this.name = name;
+  let emoji = "👤 ";
+  this.name = emoji + name;
   this.email = email;
   this.isAdmin = false;
   this.id = ++idCounter;
@@ -42,3 +43,4 @@ User.prototype.deleteSIngleComment = function(commentId) {
 }
 
 module.exports = { User, userDB };
+

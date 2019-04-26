@@ -42,9 +42,9 @@ describe("Admin should be able to do the following", function() {
     expect(db).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          name: "Martins",
           email: "martinsEmail",
           isAdmin: false,
+          isModerator: false,
           userId: 1
         })
       ])

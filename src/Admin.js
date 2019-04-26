@@ -12,7 +12,12 @@ Admin.prototype.constructor = Admin;
 
 Admin.prototype.createModerator = function(name, email) {
   return new Moderator(name, email);
-}
+};
+
+Admin.prototype.makeUserModderator = function(user) {
+  user.name = Moderator;
+  return new Moderator(user.name, user.email);
+};
 
 Admin.prototype.deleteAllComment = function() {
   return Comment.prototype.deleteAllComment();

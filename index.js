@@ -3,7 +3,7 @@ const { Admin } = require("./src/Admin");
 
 const user = new User("Martins", "martins@mail.com");
 user.saveToDB();
-const user1 = new User("victor", "victor@mail.com");
+const user1 = new User("Victor", "victor@mail.com");
 user1.saveToDB();
 
 let comment =
@@ -27,5 +27,19 @@ moderator.saveToDB();
 console.log(moderator.deleteSingleComment(1));
 
 console.log(moderator.getAllUsers());
-console.log(moderator.deleteSingleUser(1));
-//console.log(admin.deleteAllUsers())
+// console.log(moderator.deleteSingleUser(1));
+// console.log(admin.deleteAllComment());
+// console.log(admin.deleteAllUsers())
+// An admin can also make an existing user a Moderator
+let moderator1 = admin.makeUserModderator(user);
+//console.log(moderator1);
+
+var commands = [
+  [ "unicorn", "🦄" ],
+  "👤  " , 
+  [ "pizza", "🍕" ],
+  [ "beer", "😀"],
+  [ "poo", "💩"]
+];
+console.log(commands)
+console.log(commands[0][1])

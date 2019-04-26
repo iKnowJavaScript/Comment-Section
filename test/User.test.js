@@ -15,13 +15,14 @@ let comment2 = user1.postComment(
 
 describe("Testing User Methods", function() {
   it("Should create new User instance", function() {
-    expect(user).toEqual({
-      name: "Martins",
-      email: "martinsEmail",
-      isAdmin: false,
-      isModerator: false,
-      id: 1
-    });
+    expect(user).toEqual(
+      expect.objectContaining({
+        email: "martinsEmail",
+        isAdmin: false,
+        isModerator: false,
+        id: 1
+      })
+    );
   });
   it("New User's isAdmin should be set to false", function() {
     expect(user.isAdmin).toBeFalsy();
@@ -48,7 +49,7 @@ describe("Testing User Methods", function() {
     }).toThrowError(/You cannot Edit another User's Comment./);
   });
   it("Should return String Matching this", function() {
-    expect(user1.userEditComment(2, "Thanks")).toMatch(/Edited By Victor/);
+    expect(user1.userEditComment(2, "Thanks")).toMatch(/Edited By/);
   });
 
   it("Should return Throw Error if a User try to delete another user comment", function() {
