@@ -10,7 +10,7 @@ function Moderator(name, email) {
 Moderator.prototype = Object.create(User.prototype);
 Moderator.prototype.constructor = Moderator;
 
-Moderator.prototype.deleteSIngleComment = function(commentId) {
+Moderator.prototype.deleteSingleComment = function(commentId) {
   return Comment.prototype.deleteAnyComment(commentId, this);
 };
 

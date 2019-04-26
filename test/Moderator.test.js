@@ -24,7 +24,7 @@ describe("Test for Moderators", function() {
   });
 
   it("Should be able to delete any comment", function() {
-    expect(moderator.deleteSIngleComment(2)).toMatch(/Deleted By moderator/);
+    expect(moderator.deleteSingleComment(2)).toMatch(/Deleted By moderator/);
   });
 
   it("Should be able to get all users and moderator", function() {
