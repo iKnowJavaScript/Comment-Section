@@ -35,4 +35,3 @@ console.log(moderator.getAllUsers());
 let moderator1 = admin.makeUserModderator(user);
 //console.log(moderator1);
 
-

@@ -59,6 +59,7 @@ Comment.prototype.viewAll = function() {
   CommentDB.map(function(comment) {
     console.log(displayComment(comment));
   });
+  return;
 };
 
 Comment.prototype.deleteSingleComment = function(commentId, author) {
@@ -94,7 +95,7 @@ Comment.prototype.deleteAnyComment = function(commentId, mod) {
 };
 
 Comment.prototype.deleteAllComment = function() {
-  CommentDB = [];
+  CommentDB.length = 0;
 
   return "All Comment deleted.";
 };

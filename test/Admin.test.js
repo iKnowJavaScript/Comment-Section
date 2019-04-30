@@ -18,13 +18,9 @@ describe("Admin should be able to do the following", function() {
     expect(admin instanceof User).toBeTruthy();
     expect(admin instanceof Moderator).toBeTruthy();
     expect(admin instanceof Admin).toBeTruthy();
-
   });
   it("Should be Able to create a Moderator", function() {
-    let moderator1 = admin.createModerator(
-      "moderator",
-      "moderator@mail.com"
-    );
+    let moderator1 = admin.createModerator("moderator", "moderator@mail.com");
     expect(moderator1.isModerator).toBeTruthy();
     expect(moderator1.isAdmin).toBeFalsy();
   });
@@ -34,7 +30,7 @@ describe("Admin should be able to do the following", function() {
 
   it("Should be able to get all users and moderator", function() {
     let db = admin.getAllUsers();
-    
+
     expect(db).toHaveLength(2);
   });
   it("Inspecting returned array with a Valid user Object", function() {

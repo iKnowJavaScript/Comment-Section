@@ -1,5 +1,5 @@
 const { User, userDB } = require("../src/User");
-const { Comment, CommentDB } = require("../src/Comment");
+const { CommentDB } = require("../src/Comment");
 
 const user = new User("Martins", "martinsEmail");
 user.saveToDB();
@@ -15,14 +15,12 @@ let comment2 = user1.postComment(
 
 describe("Testing User Methods", function() {
   it("Should create new User instance", function() {
-    expect(user).toEqual(
-      expect.objectContaining({
-        email: "martinsEmail",
-        isAdmin: false,
-        isModerator: false,
-        id: 1
-      })
-    );
+    expect(user).toMatchObject({
+      email: "martinsEmail",
+      isAdmin: false,
+      isModerator: false,
+      id: 1
+    });
   });
   it("New User's isAdmin should be set to false", function() {
     expect(user.isAdmin).toBeFalsy();
@@ -51,10 +49,19 @@ describe("Testing User Methods", function() {
   it("Should return String Matching this", function() {
     expect(user1.userEditComment(2, "Thanks")).toMatch(/Edited By/);
   });
+  it("Should return all comment in the page section", function() {
+    const comment = user.viewAllComment();
+    expect(comment).toEqual(comment);
+  });
 
   it("Should return Throw Error if a User try to delete another user comment", function() {
     expect(() => {
       user.deleteSIngleComment(2);
     }).toThrowError(/You cannot Delete another User's Comment./);
+  });
+  it("Should return formatted delete message when deleted", function() {
+    expect(user1.deleteSIngleComment(2)).toMatch(
+      /This Comment has been deleted for some reasons/
+    );
   });
 });
