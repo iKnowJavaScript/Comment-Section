@@ -1,0 +1,10 @@
+node_modules/
+try.js
+tryy.js
+post.txt
+tempCodeRunnerFile.js*
+/coverage
+.vscode
+reduce.js
+logic.js
+logic.test.js
