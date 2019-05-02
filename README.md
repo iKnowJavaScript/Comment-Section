@@ -34,8 +34,8 @@ Website comment sectionn with Prototypal Oriented Programming with User, Moderat
 
 ** **
 
-## Data Storage
-I will be using array to save my user, moderator, admin and comment object. 
+## Data Persistence
+I will be using array to save my user, moderator, admin and comment objects. 
 
 
 ## Testing
@@ -45,6 +45,6 @@ Feel free to clone and `npm init` to get the feel of the app and `npm test` befo
 
 ## Acknowledgments
 
-* This was a tutorial to further deepens my Knowledge in Object Prototypal Inheritance in JavaScript so feel free to add to it.
+This was a tutorial to further deepens my Knowledge in Object Prototypal Inheritance in JavaScript so feel free to add to it.
 
 Articles on both prototype and testing is available on Medium
