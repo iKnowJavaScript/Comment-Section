@@ -5,3 +5,6 @@ post.txt
 tempCodeRunnerFile.js*
 /coverage
 .vscode
+reduce.js
+logic.js
+logic.test.js
